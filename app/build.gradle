@@ -15,8 +15,32 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../keystore/key.jks")
+
+            def isRunningOnTravis = System.getenv("CI") == "true"
+            if (isRunningOnTravis) {
+                keyAlias System.getenv('KEYSTORE_ALIAS')
+                keyPassword System.getenv('KEYSTORE_KEY_PASSWORD')
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+            } else {
+                def keyProperties = file("../local.properties")
+                if (keyProperties.exists()) {
+                    Properties props = new Properties()
+                    props.load(new FileInputStream(keyProperties))
+                    keyAlias props['KEYSTORE_ALIAS']
+                    keyPassword props['KEYSTORE_KEY_PASSWORD']
+                    storePassword props['KEYSTORE_PASSWORD']
+                }
+            }
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -25,7 +49,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

@@ -19,3 +19,6 @@ before_script:
   - chmod +x gradlew
 script:
   - "./gradlew assembleRelease"
+before_install:
+  - openssl aes-256-cbc -K $encrypted_7c64f0f66249_key -iv $encrypted_7c64f0f66249_iv
+    -in key.jks.enc -out keystore/key.jks -d
