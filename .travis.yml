@@ -23,7 +23,7 @@ before_install:
   - openssl aes-256-cbc -K $encrypted_7c64f0f66249_key -iv $encrypted_7c64f0f66249_iv
     -in key.jks.enc -out keystore/key.jks -d
 before_deploy:
-  - ls app/build/outputs/apk/
+  - ls app/build/outputs/apk/release/
 deploy:
   provider: releases
   api_key:
