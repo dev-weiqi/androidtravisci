@@ -3,32 +3,30 @@ jdk: oraclejdk8
 sudo: false
 android:
   components:
-    - build-tools-29.0.2
-    - android-29
-    - extra-android-m2repository
-    - extra-android-support
+  - build-tools-29.0.2
+  - android-29
+  - extra-android-m2repository
+  - extra-android-support
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - "$HOME/.gradle/caches/"
-    - "$HOME/.gradle/wrapper/"
-    - "$HOME/.android/build-cache"
+  - "$HOME/.gradle/caches/"
+  - "$HOME/.gradle/wrapper/"
+  - "$HOME/.android/build-cache"
 before_script:
-  - chmod +x gradlew
+- chmod +x gradlew
 script:
-  - "./gradlew assembleRelease"
+- "./gradlew assembleRelease"
 before_install:
-  - openssl aes-256-cbc -K $encrypted_7c64f0f66249_key -iv $encrypted_7c64f0f66249_iv
-    -in key.jks.enc -out keystore/key.jks -d
+- openssl aes-256-cbc -K $encrypted_7c64f0f66249_key -iv $encrypted_7c64f0f66249_iv
+  -in key.jks.enc -out keystore/key.jks -d
 deploy:
   provider: releases
   api_key:
     secure: Wc9r3S0NzpWyFqti3TPMWAdlaMep8YlwMaRfg71SB+tVwC0iaUHaACwmPSl1BSSlkjjxCOSLzQFi3gOPTzkdcaJkidYkDTw6HD+ZwsOL5ycv5xuxTg2VvPbmMcVt94Ad0A0r83SWMmybz131X/WcYnmPoqzRLXZvNb2xykuOupAjJCCHYoIU0jo62Qgav+vsmKKgBffApLRxMEKsaiQFRX8hFLW7553KtEVyM7w3B30phpjNvizpSFcPlrowI2fajXF8zUKUiK2c8TYqsyT5Iso101f1Nf58zFKoQ78/Xe9SjjVuL+jw9qvTqL36nqK2+EDUB6xIDyNzWzWQDCrlIAtsW7/9A7sPYmWQadCoPmYz4hR4LR4deAcJQvQkzYVKK62dk/GT8laEBZlWtENPpZdeHSyTQ2ybn/o/OsNkH4z90gWCkpvaUuDV7S2PztxEKx/i62xY+jp0LtjJEN09J7NP+0tUooyMA89Mg3YAHxy9S4hu+BKk6UaEtjIrVSDDmBB3//1qU8NTAkyqkwkEHZkFf5+YeRXb7HLn8iS9/+tRJvYN8Kt3OlK1xEfbWRkP63zOgh44XYNQmtbQ0PQNhnH7W1akE2DGnmHRAG2paQpF6naXA8NJMSqM7Q+vz9FSpRkA96kKxt16O2nA6mOzrJSUaNPTJ2sdvglZR5Z0x+I=
-  file:
-    -app/build/outputs/apk/app-release.apk
-    -app/build/outputs/bundle/app-release.aabs
+  file: "-app/build/outputs/apk/app-release.apk -app/build/outputs/bundle/app-release.aabs"
   on:
     repo: dev-weiqi/androidtravisci
     tags: true
