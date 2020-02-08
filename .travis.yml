@@ -29,5 +29,7 @@ deploy:
   api_key:
     secure: Wc9r3S0NzpWyFqti3TPMWAdlaMep8YlwMaRfg71SB+tVwC0iaUHaACwmPSl1BSSlkjjxCOSLzQFi3gOPTzkdcaJkidYkDTw6HD+ZwsOL5ycv5xuxTg2VvPbmMcVt94Ad0A0r83SWMmybz131X/WcYnmPoqzRLXZvNb2xykuOupAjJCCHYoIU0jo62Qgav+vsmKKgBffApLRxMEKsaiQFRX8hFLW7553KtEVyM7w3B30phpjNvizpSFcPlrowI2fajXF8zUKUiK2c8TYqsyT5Iso101f1Nf58zFKoQ78/Xe9SjjVuL+jw9qvTqL36nqK2+EDUB6xIDyNzWzWQDCrlIAtsW7/9A7sPYmWQadCoPmYz4hR4LR4deAcJQvQkzYVKK62dk/GT8laEBZlWtENPpZdeHSyTQ2ybn/o/OsNkH4z90gWCkpvaUuDV7S2PztxEKx/i62xY+jp0LtjJEN09J7NP+0tUooyMA89Mg3YAHxy9S4hu+BKk6UaEtjIrVSDDmBB3//1qU8NTAkyqkwkEHZkFf5+YeRXb7HLn8iS9/+tRJvYN8Kt3OlK1xEfbWRkP63zOgh44XYNQmtbQ0PQNhnH7W1akE2DGnmHRAG2paQpF6naXA8NJMSqM7Q+vz9FSpRkA96kKxt16O2nA6mOzrJSUaNPTJ2sdvglZR5Z0x+I=
   file: app/build/outputs/apk/release/app-release.apk
+  skip_cleanup: true
   on:
     repo: dev-weiqi/androidtravisci
+    tags: true
